@@ -1,12 +1,12 @@
-name: test
-
+name: debugger-action
 on:
-  workflow_dispatch:
-
+  push:
+    branches:
+      - test
 jobs:
-  KernelForEnchilada:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: |
-          ls
+      - uses: actions/checkout@v2
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
