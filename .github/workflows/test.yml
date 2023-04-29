@@ -11,6 +11,7 @@ jobs:
       
       - name: Creating Config Info
         run: |
+          echo "FOO=$(date)" >> $GITHUB_ENV
           echo "Device: OnePlus 6
           Code: enchilada
           Only For crdroidandroid(13.0)
@@ -21,4 +22,5 @@ jobs:
         with:
           artifacts: INFO.txt
           bodyFile: "INFO.txt"
+          tag: " ${{ github.FOO }}_OnePlus-KernelSU_crdroidandroid13.0"
           token: ${{ secrets.TOKEN }}
