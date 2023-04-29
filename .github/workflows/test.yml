@@ -14,7 +14,7 @@ jobs:
           echo "Device: OnePlus 6
           Code: enchilada
           Only For crdroidandroid(13.0)
-          Kernel For OnePlus 6" >> ../INFO.txt
+          Kernel For OnePlus 6" >> INFO.txt
 
       - name: Uploading Kernel Package to GH-Release
         uses: ncipollo/release-action@v1.8.6
