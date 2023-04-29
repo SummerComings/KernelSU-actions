@@ -47,7 +47,7 @@ jobs:
           Code: enchilada
           Build KernelSU Version: $(($(git rev-list --count HEAD)+10200))
           Only For crdroidandroid(13.0)
-          Kernel For OnePlus 6" >> INFO.txt
+          Kernel For OnePlus 6" >> ../INFO.txt
           popd
           
       - name: Upload File
