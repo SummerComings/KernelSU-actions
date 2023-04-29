@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  KernelForEnchilada:
+  KernelSU-For-Enchilada:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Installing Dependencies
         run: |
           sudo apt update -y
