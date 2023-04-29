@@ -20,7 +20,5 @@ jobs:
         uses: ncipollo/release-action@v1.8.6
         with:
           artifacts: INFO.txt
-          name: " OnePlus6-KernelSU_crdroidandroid13.0"
-          tag: "$(date)_OnePlus-KernelSU_crdroidandroid13.0"
           bodyFile: "INFO.txt"
           token: ${{ secrets.TOKEN }}
