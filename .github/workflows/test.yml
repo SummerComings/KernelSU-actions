@@ -22,5 +22,5 @@ jobs:
         with:
           artifacts: INFO.txt
           bodyFile: "INFO.txt"
-          tag: " ${{ GITHUB_ENV.FOO }}_OnePlus-KernelSU_crdroidandroid13.0"
+          tag: " ${{ env.FOO }}_OnePlus-KernelSU_crdroidandroid13.0"
           token: ${{ secrets.TOKEN }}
