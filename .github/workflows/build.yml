@@ -43,6 +43,7 @@ jobs:
       - name: Creating Config Info
         run: |
           pushd android_kernel_oneplus_sdm845/KernelSU
+          echo "KernelSU-version=$(($(git rev-list --count HEAD)+10200))" >> $GITHUB_ENV
           echo "Device: OnePlus 6
           Code: enchilada
           Build KernelSU Version: $(($(git rev-list --count HEAD)+10200))
@@ -61,7 +62,7 @@ jobs:
         uses: ncipollo/release-action@v1.8.6
         with:
           artifacts: anykernel-enchilada_4.9.337.zip
-          name: " OnePlus6-KernelSU_crdroidandroid13.0"
-          tag: " ${{ github.run_number }}_OnePlus-KernelSU_crdroidandroid13.0"
+          name: "${{ env.KernelSU-version }}"
+          tag: "${{ env.KernelSU-version }}"
           bodyFile: "INFO.txt"
           token: ${{ secrets.TOKEN }}
