@@ -31,7 +31,7 @@ jobs:
           export CROSS_COMPILE_ARM32=arm-linux-androideabi-
           output_dir=out
           pushd android_kernel_oneplus_sdm845
-          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+          git submodule update --remote --recursive
           make O="$output_dir" \
                       sdm845-perf_defconfig \
                       enchilada_defconfig
@@ -41,23 +41,26 @@ jobs:
           popd
       - name: Creating Config Info
         run: |
+          pushd android_kernel_oneplus_sdm845
           echo "Device: OnePlus 6
           Code: enchilada
-          Build Code: ${{ github.run_number }}
+          Build KernelSU Version: $(($(git rev-list --count HEAD)+10200))
           Only For crdroidandroid(13.0)
           Kernel For OnePlus 6" >> INFO.txt
+          popd
           
       - name: Upload File
-        uses: actions/upload-artifact@v3
-        with:
-          name: kernel
-          path: android_kernel_oneplus_sdm845/out/arch/arm64/boot/*
+        run : |
+          mv android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb anykernel/
+          cd anykernel
+          zip -r ../anykernel-enchilada_4.9.337.zip *
+          
 
-#       - name: Uploading Kernel Package to GH-Release
-#         uses: ncipollo/release-action@v1.8.6
-#         with:
-#           artifacts: OnePlus6-KernelSU_crdroidandroid13.zip
-#           name: " OnePlus6-KernelSU_LineageOS20"
-#           tag: " ${{ github.run_number }}_OnePlus-KernelSU_crdroidandroid"
-#           bodyFile: "INFO.txt"
-#           token: ${{ secrets.TOKEN }}
+      - name: Uploading Kernel Package to GH-Release
+        uses: ncipollo/release-action@v1.8.6
+        with:
+          artifacts: anykernel-enchilada_4.9.337.zip
+          name: " OnePlus6-KernelSU_crdroidandroid13.0"
+          tag: " ${{ github.run_number }}_OnePlus-KernelSU_crdroidandroid13.0"
+          bodyFile: "INFO.txt"
+          token: ${{ secrets.TOKEN }}
