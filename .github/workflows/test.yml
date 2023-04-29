@@ -1,5 +1,6 @@
 name: debugger-action
 on:
+  workflow_dispatch:
   push:
     branches:
       - test
