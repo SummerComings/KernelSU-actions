@@ -21,6 +21,6 @@ jobs:
         with:
           artifacts: INFO.txt
           name: " OnePlus6-KernelSU_crdroidandroid13.0"
-          tag: " ${{ github.run_number }}_OnePlus-KernelSU_crdroidandroid13.0"
+          tag: "$(date)_OnePlus-KernelSU_crdroidandroid13.0"
           bodyFile: "INFO.txt"
           token: ${{ secrets.TOKEN }}
