@@ -51,8 +51,8 @@ jobs:
           
       - name: Upload File
         run : |
-          mv android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb anykernel/
-          cd anykernel
+          sudo mv /home/runner/work/KernelSU-actions/KernelSU-actions/android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb /home/runner/work/KernelSU-actions/KernelSU-actions/anykernel/
+          cd /home/runner/work/KernelSU-actions/KernelSU-actions/anykernel/
           zip -r ../anykernel-enchilada_4.9.337.zip *
           
 
