@@ -1,0 +1,26 @@
+name: test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Creating Config Info
+        run: |
+          echo "Device: OnePlus 6
+          Code: enchilada
+          Only For crdroidandroid(13.0)
+          Kernel For OnePlus 6" >> ../INFO.txt
+
+      - name: Uploading Kernel Package to GH-Release
+        uses: ncipollo/release-action@v1.8.6
+        with:
+          artifacts: INFO.txt
+          name: " OnePlus6-KernelSU_crdroidandroid13.0"
+          tag: " ${{ github.run_number }}_OnePlus-KernelSU_crdroidandroid13.0"
+          bodyFile: "INFO.txt"
+          token: ${{ secrets.TOKEN }}
