@@ -56,8 +56,8 @@ jobs:
 #       - name: Uploading Kernel Package to GH-Release
 #         uses: ncipollo/release-action@v1.8.6
 #         with:
-#           artifacts: -KernelSU_crdroidandroid13.zip
+#           artifacts: OnePlus6-KernelSU_crdroidandroid13.zip
 #           name: " OnePlus6-KernelSU_LineageOS20"
 #           tag: " ${{ github.run_number }}_OnePlus-KernelSU_crdroidandroid"
 #           bodyFile: "INFO.txt"
-#           token: ${{ secrets.GITHUB_TOKEN }}
+#           token: ${{ secrets.TOKEN }}
