@@ -16,7 +16,7 @@ jobs:
 #       - name: Setup Debug Session
 #         uses: csexton/debugger-action@master
 
-      - name: Cloning Sources and Toolchain
+      - name: Upload Toolchain Tools
         run: |
           sudo apt install repo
           sudo git config --global user.name "SummerComings"
