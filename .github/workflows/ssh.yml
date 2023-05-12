@@ -24,9 +24,10 @@ jobs:
           sudo mkdir android-kernel && cd android-kernel
           sudo repo init -u https://android.googlesource.com/kernel/manifest -b android-msm-bonito-4.9-android12L
           sudo repo sync
+          sudo zip -r ../android-kernel.zip .repo/*
   
       - name: Upload android-kernel
         uses: actions/upload-artifact@v3
         with:
           name: android-kernel
-          path: android-kernel
+          path: android-kernel.zip
