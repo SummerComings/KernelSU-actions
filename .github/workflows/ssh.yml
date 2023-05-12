@@ -22,7 +22,7 @@ jobs:
           sudo git config --global user.name "SummerComings"
           sudo git config --global user.email "ji0644253@gmail.com"
           sudo mkdir android-kernel && cd android-kernel
-          sudo repo init -u https://android.googlesource.com/kernel/manifest -b common-android-4.9
+          sudo repo init -u https://android.googlesource.com/kernel/manifest -b android-msm-bonito-4.9-android12L
           sudo repo sync
   
       - name: Upload android-kernel
