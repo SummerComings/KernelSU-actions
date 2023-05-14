@@ -41,7 +41,7 @@ jobs:
           echo "CONFIG_KPROBES=y
           CONFIG_HAVE_KPROBES=y
           CONFIG_KPROBE_EVENTS=y
-          CONFIG_SECURITY_SELINUX_DEVELOP
+          CONFIG_SECURITY_SELINUX_DEVELOP=y
           CONFIG_SAMPLE_KPROBES=y
           CONFIG_SAMPLE_KRETPROBES=y" >> arch/arm64/configs/${{env.KERNEL_DEFCONFIG}}
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{env.KERNELSU_TAG}}
