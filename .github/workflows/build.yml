@@ -16,6 +16,7 @@ jobs:
       
       - name: Setup Configuration
         run: |
+          echo "BUILD_TIME=$(TZ=Asia/Shanghai date "+%Y%m%d%H%M")" >> $GITHUB_ENV
           for s in $(cat config.env);do echo $s >> $GITHUB_ENV;done
     
       - name: Cloning Sources and Toolchain
@@ -47,16 +48,8 @@ jobs:
           make O="$output_dir" ${{KERNEL_DEFCONFIG}}
           make -j $(nproc) O="$output_dir" CC=clang
           popd
-      - name: Creating Config Info
+      - name: Resource organization
         run: |
-          pushd android_kernel_oneplus_sdm845/KernelSU
-          echo "KernelSU-version=$(($(git rev-list --count HEAD)+10200))" >> $GITHUB_ENV
-          echo "Device: OnePlus 6
-          Code: enchilada
-          Build KernelSU Version: $(($(git rev-list --count HEAD)+10200))
-          Only For crdroidandroid(13.0)
-          Kernel For OnePlus 6" >> ../../INFO.txt
-          popd
           sudo mv android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb anykernel/
           cd anykernel/
           sed -i 's/crdroid-13.0/${{ROM_NAME}}/g' anykernel.sh
@@ -64,14 +57,5 @@ jobs:
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v3
         with:
-          name: AnyKernel3${{ env.UPLOADNAME }}-${{ env.DEVICE }}-${{ env.BUILD_TIME }}
+          name: AnyKernel3_enchilada-${{ env.ROM_NAME }}-${{ env.BUILD_TIME }}
           path: anykernel/*
-        
-      - name: Uploading Kernel Package to GH-Release
-        uses: ncipollo/release-action@v1.8.6
-        with:
-          artifacts: anykernel-enchilada_4.9.337.zip
-          name: "${{ env.KernelSU-version }}"
-          tag: "${{ env.KernelSU-version }}"
-          bodyFile: "INFO.txt"
-          token: ${{ secrets.TOKEN }}
