@@ -52,6 +52,8 @@ jobs:
           Kernel For OnePlus 6" >> ../../INFO.txt
           popd
           sudo mv android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb anykernel/
+          cd anykernel/
+          sed -i 's/crdroid-13.0/${{ROM_NAME}}/g' anykernel.sh
       
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v3
