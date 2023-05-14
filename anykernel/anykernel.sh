@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Kernelsu by SummerComings (crdroid-13.0 ROM only)
+kernel.string=KernelSU For crdroid-13.0
 do.devicecheck=0
 do.modules=0
 do.systemless=1
