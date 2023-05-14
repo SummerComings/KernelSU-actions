@@ -37,8 +37,14 @@ jobs:
           export CROSS_COMPILE_ARM32=arm-linux-androideabi-
           output_dir=out
           pushd android_kernel_oneplus_sdm845
+          echo "CONFIG_KPROBES=y
+          CONFIG_HAVE_KPROBES=y
+          CONFIG_KPROBE_EVENTS=y
+          CONFIG_SECURITY_SELINUX_DEVELOP
+          CONFIG_SAMPLE_KPROBES=y
+          CONFIG_SAMPLE_KRETPROBES=y" >> arch/arm64/configs/${{KERNEL_DEFCONFIG}}
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{KERNELSU_TAG}}
-          make O="$output_dir" KERNEL_DEFCONFIG
+          make O="$output_dir" ${{KERNEL_DEFCONFIG}}
           make -j $(nproc) O="$output_dir" CC=clang
           popd
       - name: Creating Config Info
