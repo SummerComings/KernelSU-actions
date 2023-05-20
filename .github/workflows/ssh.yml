@@ -12,10 +12,12 @@ jobs:
           repo init -u https://android.googlesource.com/kernel/manifest -b android-msm-bonito-4.9-android12L
           repo sync
           zip -r ../Soucre.zip .repo
+          export home=$(pwd)
+          eecho "home=${home}/Source.zip">> $GITHUB_ENV
          
       
      - name: Upload Zip Files
        uses: actions/upload-artifact@v3
        with:
         name: Source
-        path: Source.zip
+        path: ${{env.home}}
