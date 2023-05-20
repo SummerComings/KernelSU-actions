@@ -10,3 +10,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup Debug Session
         uses: csexton/debugger-action@master
+      
+      - name: Upload Zip Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: Source
+          path: Source.zip
