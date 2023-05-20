@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - name: Upload Zip Files
+     - name: Download and package
        run: |
           sudo apt install repo
           mkdir android-kernel && cd android-kernel
