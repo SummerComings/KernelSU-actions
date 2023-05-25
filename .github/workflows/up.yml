@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Run update script
         run: |
+          sudo mkdir ~/.ssh
           echo "${{secrets.GITEEKEY}}" > ~/.ssh/id_rsa
           chmod 400 ~/.ssh/id_rsa
           git clone git@gitee.com:SummerComings/my-config.git
