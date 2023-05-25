@@ -11,7 +11,7 @@ jobs:
         run: |
           sudo mkdir ~/.ssh
           echo "${{secrets.GITEEKEY}}" > ~/.ssh/id_rsa
-          sudo chmod 400 ~/.ssh/id_rsa
+          git update-index --chmod=400 ~/.ssh/id_rsa
           git clone git@gitee.com:SummerComings/my-config.git
           cd my-config
           echo "yuy1" > yuy
