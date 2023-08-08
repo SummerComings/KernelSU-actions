@@ -60,3 +60,9 @@ jobs:
         with:
           name: AnyKernel3_enchilada-${{ env.ROM_NAME }}-${{ env.BUILD_TIME }}
           path: anykernel/*
+
+      - name: Upload Toolchains
+        uses: actions/upload-artifact@v3
+        with:
+          name: source
+          path: ./*
