@@ -22,14 +22,14 @@ jobs:
       - name: Cloning Sources and Toolchain
         run: |
           git clone ${{env.KERNEL_SOURCE}} --depth=1 -b ${{env.KERNEL_SOURCE_BRANCH}} android_kernel_oneplus_sdm845
-          git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r445002 --depth=1 --single-branch --no-tags -b 12.0 ~/clang
-          git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b android-10.0.0_r47 --depth=1 --single-branch --no-tags ~/aarch64-linux-android-4.9
-          git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-10.0.0_r47 --depth=1 --single-branch --no-tags ~/arm-linux-androideabi-4.9
+          git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r445002 --depth=1 --single-branch --no-tags -b 12.0 ~/toolchains/clang
+          git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b android-10.0.0_r47 --depth=1 --single-branch --no-tags ~/toolchains/aarch64-linux-android-4.9
+          git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-10.0.0_r47 --depth=1 --single-branch --no-tags ~/toolchains/arm-linux-androideabi-4.9
       - name: Compiling Kernel
         run: |
-          CLANG=~/clang/bin
-          GCC32=~/arm-linux-androideabi-4.9/bin
-          GCC64=~/aarch64-linux-android-4.9/bin
+          CLANG=~/toolchains/clang/bin
+          GCC32=~/toolchains/arm-linux-androideabi-4.9/bin
+          GCC64=~/toolchains/aarch64-linux-android-4.9/bin
           PATH=$CLANG:$GCC64:$GCC32:$PATH
           export PATH
           export ARCH=arm64
@@ -64,5 +64,13 @@ jobs:
       - name: Upload Toolchains
         uses: actions/upload-artifact@v3
         with:
-          name: source
-          path: ./*
+          name: toolchains
+          path: toolchains/*
+
+      - name: Upload kernel_source
+        uses: actions/upload-artifact@v3
+        with:
+          name: kernelsu_source
+          path: android_kernel_oneplus_sdm845
+
+        
