@@ -49,7 +49,7 @@ jobs:
           make O="$output_dir" ${{env.KERNEL_DEFCONFIG}}
           make -j $(nproc) O="$output_dir" CC=clang
           popd
-          tar -zcvf toolchains.tar.gz toolchains
+          tar -zcvf toolchains.tar.gz ~/toolchains
           
       - name: Resource organization
         run: |
