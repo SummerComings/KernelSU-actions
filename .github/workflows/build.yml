@@ -49,6 +49,8 @@ jobs:
           make O="$output_dir" ${{env.KERNEL_DEFCONFIG}}
           make -j $(nproc) O="$output_dir" CC=clang
           popd
+          tar -zcvf toolchains.tar.gz toolchains
+          
       - name: Resource organization
         run: |
           sudo mv android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb anykernel/
@@ -65,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: toolchains
-          path: toolchains/*
+          path: toolchains.tar.gz
 
       - name: Upload kernel_source
         uses: actions/upload-artifact@v3
