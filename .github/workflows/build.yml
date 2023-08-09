@@ -50,6 +50,7 @@ jobs:
           make -j $(nproc) O="$output_dir" CC=clang
           popd
           tar -zcvf toolchains.tar.gz ~/toolchains
+          tar -zcvf kernelsu_source.tar.gz android_kernel_oneplus_sdm845
           
       - name: Resource organization
         run: |
@@ -73,6 +74,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: kernelsu_source
-          path: android_kernel_oneplus_sdm845
+          path: kernelsu_source.tar.gz
 
         
