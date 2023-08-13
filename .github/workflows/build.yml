@@ -55,7 +55,7 @@ jobs:
       - uses: actions/cache/save@v3
         id: cache
         with:
-          path: path/to/dependencies
+          path: ~/.cache/ccache
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
       
       - name: Resource organization
