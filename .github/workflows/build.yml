@@ -18,6 +18,14 @@ jobs:
         run: |
           echo "BUILD_TIME=$(TZ=Asia/Shanghai date "+%Y%m%d%H%M")" >> $GITHUB_ENV
           for s in $(cat config.env);do echo $s >> $GITHUB_ENV;done
+
+      - name: Cache Primes
+        id: cache-primes
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ccache
+          key: ${{ runner.os }}-primes
+          
     
       - name: Cloning Sources and Toolchain
         run: |
