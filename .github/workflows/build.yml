@@ -25,7 +25,7 @@ jobs:
           git clone https://gitlab.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r445002 --depth=1 --single-branch --no-tags -b 12.0 ~/toolchains/clang
           git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b android-10.0.0_r47 --depth=1 --single-branch --no-tags ~/toolchains/aarch64-linux-android-4.9
           git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-10.0.0_r47 --depth=1 --single-branch --no-tags ~/toolchains/arm-linux-androideabi-4.9
-        
+      
       - name: Compiling Kernel
         run: |
           CLANG=~/toolchains/clang/bin
@@ -52,12 +52,19 @@ jobs:
           popd
           tar -zcvf toolchains.tar.gz ~/toolchains
           tar -zcvf kernelsu_source.tar.gz android_kernel_oneplus_sdm845
-          
+      - uses: actions/cache/save@v3
+        id: cache
+        with:
+          path: path/to/dependencies
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+      
       - name: Resource organization
         run: |
           sudo mv android_kernel_oneplus_sdm845/out/arch/arm64/boot/Image.gz-dtb anykernel/
           cd anykernel/
           sed -i 's/crdroid-13.0/${{env.ROM_NAME}}/g' anykernel.sh
+
+      
 
       - name: Upload AnyKernel3
         uses: actions/upload-artifact@v3
