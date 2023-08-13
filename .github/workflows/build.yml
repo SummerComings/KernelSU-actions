@@ -64,16 +64,16 @@ jobs:
           name: AnyKernel3_enchilada-${{ env.ROM_NAME }}-${{ env.BUILD_TIME }}
           path: anykernel/*
 
-      - name: Upload Toolchains
-        uses: actions/upload-artifact@v3
-        with:
-          name: toolchains
-          path: toolchains.tar.gz
+      # - name: Upload Toolchains
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: toolchains
+      #     path: toolchains.tar.gz
 
-      - name: Upload kernel_source
-        uses: actions/upload-artifact@v3
-        with:
-          name: kernelsu_source
-          path: kernelsu_source.tar.gz
+      # - name: Upload kernel_source
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: kernelsu_source
+      #     path: kernelsu_source.tar.gz
 
         
