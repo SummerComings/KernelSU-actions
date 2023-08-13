@@ -69,11 +69,11 @@ jobs:
           cd anykernel/
           sed -i 's/crdroid-13.0/${{env.ROM_NAME}}/g' anykernel.sh
 
-      - name:Save Primes
-        id:cache-primes-save
-        uses:actions/cache/save@v3
+      - name: Save Primes
+        id: cache-primes-save
+        uses: actions/cache/save@v3
         with:
-         path: |
+          path: |
             path/to/dependencies
             some/other/dependencies
           key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
