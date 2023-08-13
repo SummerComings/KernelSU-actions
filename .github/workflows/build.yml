@@ -64,7 +64,7 @@ jobs:
         id: cache
         with:
           path: ~/.cache/ccache
-          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          key: ${{ runner.os }}-primes
       
       - name: Resource organization
         run: |
