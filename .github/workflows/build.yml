@@ -45,7 +45,7 @@ jobs:
           CONFIG_SECURITY_SELINUX_DEVELOP=y
           CONFIG_SAMPLE_KPROBES=y
           CONFIG_SAMPLE_KRETPROBES=y" >> arch/arm64/configs/${{env.KERNEL_DEFCONFIG}}
-          sudo cp -r ../Tools/hooks.c-patch security/selinux/hooks.c
+          sudo git apply ../Tools/hooks.c.patch
           curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{env.KERNELSU_TAG}}
           make O="$output_dir" ${{env.KERNEL_DEFCONFIG}}
           make -j $(nproc) O="$output_dir" CC="ccache clang"
