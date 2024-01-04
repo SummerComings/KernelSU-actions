@@ -1,5 +1,5 @@
 diff --git a/security/selinux/hooks.c b/security/selinux/hooks.c
-index 4abba0e16..d06240f24 100644
+
 --- a/security/selinux/hooks.c
 +++ b/security/selinux/hooks.c
 @@ -1,3 +1,4 @@
