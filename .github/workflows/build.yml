@@ -39,6 +39,7 @@ jobs:
           export CROSS_COMPILE_ARM32=arm-linux-androideabi-
           output_dir=out
           pushd android_kernel_oneplus_sdm845
+          echo -e "CONFIG_KALLSYMS=y\nCONFIG_KALLSYMS_ALL=y" >> arch/arm64/configs/enchilada_defconfig
           #git apply ../Tools/oneplus6-kernelsu.patch
           #curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s ${{env.KERNELSU_TAG}}
           make O="$output_dir" ${{env.KERNEL_DEFCONFIG}}
